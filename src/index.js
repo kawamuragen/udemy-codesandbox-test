@@ -115,3 +115,116 @@ console.log(message7);
 
 const sayHello = (name = "ゲスト") => console.log(`こんにちは！${name}さん！`);
 sayHello();
+
+/**
+ * スプレッド構文 ...
+ */
+// 配列の展開
+const arr1 = [1, 2];
+console.log(arr1);
+console.log(...arr1);
+
+const sumFunc = (num1, num2) => console.log(num1 + num2);
+// sumFunc(arr1[0], arr1[1]);
+sumFunc(...arr1);
+
+// まとめる
+const arr2 = [1, 2, 3, 4, 5];
+const [arnum1, arnum2, ...arnum3] = arr2;
+console.log(arnum1);
+console.log(arnum2);
+console.log(arnum3);
+
+// 配列のコピー、結合
+const arr4 = [10, 20];
+const arr5 = [30, 40];
+
+const arr6 = [...arr4];
+console.log(arr6);
+
+const arr7 = [...arr4, ...arr5];
+console.log(arr7);
+
+// 配列を＝でコピーすると元の配列も参照を受けてしまう。
+const arr8 = arr4;
+arr8[0] = 100;
+console.log(arr4);
+
+/**
+ * mapやfilterを使った配列の処理
+ */
+// 従来のやり方
+const nameArr1 = ["田中", "山田", "じゃけえ"];
+// for (let index = 0; index < nameArr1.length; index++) {
+//   console.log(nameArr1[index]);
+// }
+
+// map を使ったやり方
+// const nameArr2 = nameArr1.map((name) => {
+//   return name;
+// });
+// console.log(nameArr2);
+
+nameArr1.map((name, index) => console.log(`${index + 1}番目は${name}です`));
+
+// filterの使い方
+// ある条件で取り出すときに使う
+const numArr = [1, 2, 3, 4, 5];
+const newNumArr = numArr.filter((num) => {
+  return num % 2 === 1;
+});
+console.log(newNumArr);
+
+// mapを使って特定の条件で配列を変えたい場合
+const newNameArr = nameArr1.map((name) => {
+  if (name === "じゃけえ") {
+    return name;
+  } else {
+    return `${name}さん`;
+  }
+});
+console.log(newNameArr);
+
+/**
+ * 三項演算子
+ */
+// ある条件 ？ 条件がtrueの時：条件がfalseの時
+const val1 = 1 > 0 ? "trueです" : "falseです";
+console.log(val1);
+
+const numnum = 1300;
+// console.log(numnum.toLocaleString());
+
+const formattedNum =
+  typeof numnum === "number"
+    ? numnum.toLocaleString()
+    : "数値を入力してください";
+console.log(formattedNum);
+
+const checkSum = (num1, num2) => {
+  return num1 + num2 > 100 ? "100をこえています！" : "許容範囲内です";
+};
+console.log(checkSum(50, 60));
+
+/**
+ * 論理演算子のほんとうの意味を知ろう && ||
+ */
+// const flag1 = true;
+// const flag2 = false;
+
+// if (flag1 || flag2) {
+//   console.log("1が2はtrueです。");
+// }
+// if (flag1 && flag2) {
+//   console.log("1が2もtrueです。");
+// }
+
+// || は左側がfalseなら右側を返す
+const nukn = null;
+const fee = nukn || "金額未設定です";
+console.log(fee);
+
+// && は左側がtruなら右側を返す
+const nukn2 = 100;
+const fee2 = nukn2 && "なにか設定されました";
+console.log(fee2);
